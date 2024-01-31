@@ -1,0 +1,17 @@
+---
+title: "Post with Code"
+author: "Hailey Quintavalle"
+date: "2024-01-31"
+categories: [news, code]
+image: "image.jpg"
+---
+
+This is the newest post on the page.
+
+```{r message=FALSE}
+
+d <- 3*2*5*6*7
+d
+```
+
+test

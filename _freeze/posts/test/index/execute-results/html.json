@@ -1,0 +1,16 @@
+{
+  "hash": "c98174f1c64f9162f038bc4bd0fccf96",
+  "result": {
+    "markdown": "---\ntitle: \"Test Post\"\nauthor: \"Hailey Quintavalle\"\ndate: \"2024-01-31\"\ncategories: [news, code, wonky]\nimage: \"image.jpg\"\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(palmerpenguins)\nlibrary(tidyverse)\nggplot(penguins, aes(x = bill_length_mm)) +\n  geom_histogram(color = \"black\", fill = \"white\")\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
