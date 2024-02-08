@@ -1,0 +1,163 @@
+---
+title: "Mario Kart Records!"
+author: "Hailey Quintavalle"
+date: "2024-01-31"
+categories: [gaming, code]
+image: "mario.jpg"
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r CHUNK 0, message=FALSE, echo=FALSE}
+library(tidyverse)
+library(here)
+```
+
+```{r CHUNK 1, echo = F, warning = F, message = F}
+#records <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv')
+drivers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/drivers.csv')
+
+records <- read.csv(here("data/records.csv"))
+```
+
+![](mario.jpg)
+
+
+
+
+## Introduction
+
+what data set are you working with?
+
+what variables are you most interested in?
+
+How many observations are in your data set? - 2334 overall
+
+what is your question of interest?
+
+Which track is the fastest?
+
+How did the world records develop over time?
+*Which track is the fastest?* 
+For which track did the world record improve the most?
+For how many tracks have shortcuts been discovered?
+When were shortcuts discovered?
+On which track does the shortcut save the most time?
+Which is the longest standing world record?
+Who is the player with the most world records?
+Who are recent players?
+
+
+where did you get the data from?
+(If possible, give a link to the data source).
+
+github
+
+what other pieces of context are important to explain to the reader?
+
+
+
+```{r CHUNK 2, echo = F, message = F, warning = F}
+record_sum_nshortcut <- records |>
+  filter(shortcut == "No", type == "Single Lap") |>
+  group_by(track) |>
+  summarise(avg_time = mean(time), n = n()) |>
+  arrange(avg_time, desc = T) |>
+  mutate(se = avg_time / n, 
+         lb_se = avg_time - se,
+         ub_se = avg_time + se)
+
+record_sum_shortcut <- records |>
+  filter(shortcut == "Yes", type == "Single Lap") |>
+  group_by(track) |>
+  summarise(avg_time = mean(time), n = n()) |>
+  arrange(avg_time, desc = T)
+```
+
+## Primary Visualizations
+
+choose an appropriate visualization, eliminate clutter, and focus attention as appropriate to answer your question of interest.
+
+provide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.
+
+```{r CHUNK 3, echo = F}
+record_sum_nshortcut |>
+  mutate(track = fct_reorder(track, avg_time)) |>
+  ggplot(aes(x = track, y = avg_time)) +
+  geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
+  geom_point(size=3.5, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
+# geom_errorbar(aes(ymin = lb_se, ymax = ub_se)) +
+  coord_flip() +
+  theme_minimal() +
+  ylab("Average Time (s)") +
+  xlab("Track") +
+  labs(title = "Average Time to Complete One Lap (No Shortcuts)",
+  caption = "Data Source: Mario Kart World Records")
+```
+
+```{r CHUNK 4, echo = F, eval = F}
+record_sum_shortcut |>
+  mutate(track = fct_reorder(track, avg_time)) |>
+  ggplot(aes(x = track, y = avg_time)) +
+  geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
+  geom_point(size=3.5, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
+  coord_flip() +
+  theme_minimal() +
+  ylab("Average Time (s)") +
+  xlab("Track") +
+  labs(title = "Average Time to Complete One Lap (With Shortcuts)",
+  caption = "Data Source: Mario Kart World Records")
+```
+
+
+
+```{r CHUNK 5, echo = F, warning = F, message = F}
+record_short <- records |>
+  group_by(shortcut, track) |>
+  summarise(mean = mean(time)) |>
+  pivot_wider(names_from = shortcut, values_from = mean) |>
+  mutate(shortcut_save = No - Yes) |>
+  filter(shortcut_save != "NA") |>
+  mutate(shortcut_save = as.numeric(shortcut_save)) 
+
+
+ggplot(record_short, aes(x = track, y = shortcut_save)) +
+  geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
+  geom_point(size=3.5, color="seagreen", fill=alpha("darkseagreen"), shape=21, stroke=1.5) +
+  coord_flip() +
+  theme_minimal() +
+  ylab("Time (s)") +
+  xlab("Track") +
+  labs(title = "Average Time Saved Using Shortcuts",
+  caption = "Data Source: Mario Kart World Records")
+```
+
+```{r}
+
+```
+
+
+
+## Conclusion and Wrap-Up
+
+are there any flaws with your approach to analyzing the data you’ve selected?
+
+are there future directions you would go if you had additional data or more time?
+
+## Connection to Class Ideas
+
+At the end of your write-up, you should connect your visualization(s) to ideas from class.
+In what ways would you argue your visualization(s) are effective ways of communicating information?
+
+
+
+
+
+
+
+
+
+
+
+
