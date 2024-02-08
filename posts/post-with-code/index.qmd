@@ -1,8 +1,8 @@
 ---
-title: "Post with Code"
+title: "Mario Kart Blog"
 author: "Hailey Quintavalle"
 date: "2024-01-31"
-categories: [news, code]
+categories: [gaming, code]
 image: "image.jpg"
 ---
 
@@ -10,13 +10,14 @@ image: "image.jpg"
 library(tidyverse)
 ```
 
-```{r}
+```{r CHUNK 1}
 records <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv')
 drivers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/drivers.csv')
 ```
 
 
-```{r}
+```{r CHUNK 2}
+library(tidyverse)
 record_sum <- records |> group_by(track) |>
   summarise(avg_time = mean(time), n = n()) |>
   arrange(avg_time, desc = T) |>
@@ -27,16 +28,15 @@ record_sum <- records |> group_by(track) |>
 record_sum
 ```
 
-```{r}
+```{r CHUNK 3}
+library(tidyverse)
 record_sum |>
   mutate(track = fct_reorder(track, avg_time)) |>
   ggplot(aes(x = track, y = avg_time)) +
   geom_segment(aes(xend = track, yend = 0), color = "grey", size = 1.5) +
   geom_point(size=3, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
   coord_flip() +
-  theme_minimal() + 
-  
-  
+  theme_minimal()
 ```
 
 
