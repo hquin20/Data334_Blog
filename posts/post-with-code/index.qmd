@@ -6,12 +6,105 @@ categories: [news, code]
 image: "image.jpg"
 ---
 
-This is the newest post on the page.
-
-```{r message=FALSE}
-
-d <- 3*2*5*6*7
-d
+```{r message=FALSE, eval=FALSE}
+library(tidyverse)
 ```
 
-test
+```{r}
+records <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv')
+drivers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/drivers.csv')
+```
+
+
+```{r}
+record_sum <- records |> group_by(track) |>
+  summarise(avg_time = mean(time), n = n()) |>
+  arrange(avg_time, desc = T) |>
+  mutate(se = avg_time / n, 
+         lb_se = avg_time - se,
+         ub_se = avg_time + se)
+
+record_sum
+```
+
+```{r}
+record_sum |>
+  mutate(track = fct_reorder(track, avg_time)) |>
+  ggplot(aes(x = track, y = avg_time)) +
+  geom_segment(aes(xend = track, yend = 0), color = "grey", size = 1.5) +
+  geom_point(size=3, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
+  coord_flip() +
+  theme_minimal() + 
+  
+  
+```
+
+
+
+
+How did the world records develop over time?
+Which track is the fastest?
+For which track did the world record improve the most?
+For how many tracks have shortcuts been discovered?
+When were shortcuts discovered?
+On which track does the shortcut save the most time?
+Which is the longest standing world record?
+Who is the player with the most world records?
+Who are recent players?
+
+
+
+
+
+
+
+
+
+
+## Introduction
+
+what data set are you working with?
+
+
+
+what variables are you most interested in? How many observations are in your data set?
+
+
+
+what is your question of interest?
+
+
+
+where did you get the data from? (If possible, give a link to the data source).
+
+github
+
+what other pieces of context are important to explain to the reader?
+
+
+
+## Primary Visualizations
+
+choose an appropriate visualization, eliminate clutter, and focus attention as appropriate to answer your question of interest.
+
+provide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.
+
+## Conclusion and Wrap-Up
+
+are there any flaws with your approach to analyzing the data you’ve selected?
+
+are there future directions you would go if you had additional data or more time?
+
+## Connection to Class Ideas
+
+At the end of your write-up, you should connect your visualization(s) to ideas from class. In what ways would you argue your visualization(s) are effective ways of communicating information?
+
+
+
+
+
+
+
+
+
+
