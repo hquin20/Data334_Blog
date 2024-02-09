@@ -87,7 +87,6 @@ record_sum_nshortcut |>
   ggplot(aes(x = track, y = avg_time)) +
   geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
   geom_point(size=3.5, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
-# geom_errorbar(aes(ymin = lb_se, ymax = ub_se)) +
   coord_flip() +
   theme_minimal() +
   ylab("Average Time (s)") +
@@ -122,7 +121,7 @@ record_short <- records |>
   mutate(shortcut_save = as.numeric(shortcut_save)) 
 
 
-ggplot(record_short, aes(x = track, y = shortcut_save)) +
+ggplot(record_short, aes(x = reorder(track, shortcut_save), y = shortcut_save)) +
   geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
   geom_point(size=3.5, color="seagreen", fill=alpha("darkseagreen"), shape=21, stroke=1.5) +
   coord_flip() +
@@ -133,9 +132,7 @@ ggplot(record_short, aes(x = track, y = shortcut_save)) +
   caption = "Data Source: Mario Kart World Records")
 ```
 
-```{r}
 
-```
 
 
 
