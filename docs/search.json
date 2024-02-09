@@ -7,32 +7,11 @@
     "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
-    "objectID": "posts/mario_kart_blog/index.html#introduction",
-    "href": "posts/mario_kart_blog/index.html#introduction",
-    "title": "Mario Kart Records!",
-    "section": "Introduction",
-    "text": "Introduction\nwhat data set are you working with?\nwhat variables are you most interested in?\nHow many observations are in your data set? - 2334 overall\nwhat is your question of interest?\nWhich track is the fastest?\nHow did the world records develop over time? Which track is the fastest? For which track did the world record improve the most? For how many tracks have shortcuts been discovered? When were shortcuts discovered? On which track does the shortcut save the most time? Which is the longest standing world record? Who is the player with the most world records? Who are recent players?\nwhere did you get the data from? (If possible, give a link to the data source).\ngithub\nwhat other pieces of context are important to explain to the reader?"
-  },
-  {
-    "objectID": "posts/mario_kart_blog/index.html#primary-visualizations",
-    "href": "posts/mario_kart_blog/index.html#primary-visualizations",
-    "title": "Mario Kart Records!",
-    "section": "Primary Visualizations",
-    "text": "Primary Visualizations\nchoose an appropriate visualization, eliminate clutter, and focus attention as appropriate to answer your question of interest.\nprovide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead."
-  },
-  {
-    "objectID": "posts/mario_kart_blog/index.html#conclusion-and-wrap-up",
-    "href": "posts/mario_kart_blog/index.html#conclusion-and-wrap-up",
-    "title": "Mario Kart Records!",
-    "section": "Conclusion and Wrap-Up",
-    "text": "Conclusion and Wrap-Up\nare there any flaws with your approach to analyzing the data you’ve selected?\nare there future directions you would go if you had additional data or more time?"
-  },
-  {
-    "objectID": "posts/mario_kart_blog/index.html#connection-to-class-ideas",
-    "href": "posts/mario_kart_blog/index.html#connection-to-class-ideas",
-    "title": "Mario Kart Records!",
-    "section": "Connection to Class Ideas",
-    "text": "Connection to Class Ideas\nAt the end of your write-up, you should connect your visualization(s) to ideas from class. In what ways would you argue your visualization(s) are effective ways of communicating information?"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data334_Blog",
+    "section": "",
+    "text": "Mario Kart 64!\n\n\n\n\n\n\n\nGaming\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -42,17 +21,31 @@
     "text": "About this blog"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data334_Blog",
-    "section": "",
-    "text": "Mario Kart Records!\n\n\n\n\n\n\n\ngaming\n\n\ncode\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "objectID": "posts/mario_kart_blog/index.html#introduction",
+    "href": "posts/mario_kart_blog/index.html#introduction",
+    "title": "Mario Kart 64!",
+    "section": "Introduction",
+    "text": "Introduction\nwhat data set are you working with?\nwhat variables are you most interested in?\nHow many observations are in your data set? - 2334 overall\nwhat is your question of interest?\nWhich track is the fastest?\nHow did the world records develop over time? Which track is the fastest? For which track did the world record improve the most? For how many tracks have shortcuts been discovered? - 12 out of 16 tracks have shortcuts When were shortcuts discovered? On which track does the shortcut save the most time? Which is the longest standing world record? Who is the player with the most world records? Who are recent players?\nwhere did you get the data from? (If possible, give a link to the data source).\nMario Kart World Records\ngithub\nwhat other pieces of context are important to explain to the reader?"
   },
   {
-    "objectID": "posts/test/index.html",
-    "href": "posts/test/index.html",
-    "title": "Test Post",
-    "section": "",
-    "text": "library(palmerpenguins)\nlibrary(tidyverse)\nggplot(penguins, aes(x = bill_length_mm)) +\n  geom_histogram(color = \"black\", fill = \"white\")"
+    "objectID": "posts/mario_kart_blog/index.html#primary-visualizations",
+    "href": "posts/mario_kart_blog/index.html#primary-visualizations",
+    "title": "Mario Kart 64!",
+    "section": "Primary Visualizations",
+    "text": "Primary Visualizations\nchoose an appropriate visualization, eliminate clutter, and focus attention as appropriate to answer your question of interest.\nprovide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.\n\n\n\n\n\n\nrecords |&gt; \n#  filter(shortcut == \"Yes\") |&gt;\n  group_by(track) |&gt;\n  summarise(n())\n\n# A tibble: 16 × 2\n   track                 `n()`\n   &lt;chr&gt;                 &lt;int&gt;\n 1 Banshee Boardwalk        83\n 2 Bowser's Castle          69\n 3 Choco Mountain          148\n 4 D.K.'s Jungle Parkway   180\n 5 Frappe Snowland         180\n 6 Kalimari Desert         169\n 7 Koopa Troopa Beach       89\n 8 Luigi Raceway           147\n 9 Mario Raceway           160\n10 Moo Moo Farm             81\n11 Rainbow Road            179\n12 Royal Raceway           149\n13 Sherbet Land            143\n14 Toad's Turnpike         196\n15 Wario Stadium           201\n16 Yoshi Valley            160\n\n\n\n\n\n\n\n\nrecords |&gt; \n  filter(track == \"Wario Stadium\", time &lt; 50) |&gt; \n  ggplot(aes(x = date, y = time, color = shortcut)) +\n  geom_point()"
+  },
+  {
+    "objectID": "posts/mario_kart_blog/index.html#conclusion-and-wrap-up",
+    "href": "posts/mario_kart_blog/index.html#conclusion-and-wrap-up",
+    "title": "Mario Kart 64!",
+    "section": "Conclusion and Wrap-Up",
+    "text": "Conclusion and Wrap-Up\nare there any flaws with your approach to analyzing the data you’ve selected?\nare there future directions you would go if you had additional data or more time?"
+  },
+  {
+    "objectID": "posts/mario_kart_blog/index.html#connection-to-class-ideas",
+    "href": "posts/mario_kart_blog/index.html#connection-to-class-ideas",
+    "title": "Mario Kart 64!",
+    "section": "Connection to Class Ideas",
+    "text": "Connection to Class Ideas\nAt the end of your write-up, you should connect your visualization(s) to ideas from class. In what ways would you argue your visualization(s) are effective ways of communicating information?"
   }
 ]
