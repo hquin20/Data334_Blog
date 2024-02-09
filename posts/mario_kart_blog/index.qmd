@@ -1,9 +1,9 @@
 ---
-title: "Mario Kart Records!"
+title: "Mario Kart 64!"
 author: "Hailey Quintavalle"
 date: "2024-01-31"
-categories: [gaming, code]
-image: "mario.jpg"
+categories: [Gaming, Blog]
+image: "mario64.jpg"
 editor: 
   markdown: 
     wrap: sentence
@@ -28,33 +28,30 @@ records <- read.csv(here("data/records.csv"))
 
 ## Introduction
 
-what data set are you working with?
+what data set are you working with? - mario kart
 
-what variables are you most interested in?
+what variables are you most interested in? - track, shortcut, time
 
 How many observations are in your data set? - 2334 overall
 
-what is your question of interest?
+what is your question of interest? - Which track is the fastest?
 
-Which track is the fastest?
 
 How did the world records develop over time?
 *Which track is the fastest?* 
 For which track did the world record improve the most?
-For how many tracks have shortcuts been discovered?
+*For how many tracks have shortcuts been discovered?* - 12 out of 16 tracks have shortcuts
 When were shortcuts discovered?
-On which track does the shortcut save the most time?
+*On which track does the shortcut save the most time?*
 Which is the longest standing world record?
 Who is the player with the most world records?
 Who are recent players?
 
 
 where did you get the data from?
-(If possible, give a link to the data source).
+(If possible, give a link to the data source). - Mario Kart World Records
 
-github
-
-what other pieces of context are important to explain to the reader?
+what other pieces of context are important to explain to the reader? - looking at single laps
 
 
 
@@ -81,34 +78,33 @@ choose an appropriate visualization, eliminate clutter, and focus attention as a
 
 provide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.
 
-```{r CHUNK 3, echo = F}
+```{r CHUNK 3, echo = F, warning = F}
 record_sum_nshortcut |>
   mutate(track = fct_reorder(track, avg_time)) |>
   ggplot(aes(x = track, y = avg_time)) +
-  geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
+  geom_segment(aes(xend = track, yend = 0), color = "grey65", linewidth = 1.5) +
   geom_point(size=3.5, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
   coord_flip() +
   theme_minimal() +
   ylab("Average Time (s)") +
   xlab("Track") +
-  labs(title = "Average Time to Complete One Lap (No Shortcuts)",
+  labs(title = "Average Time to Complete One Lap (Non-Shortcut)",
   caption = "Data Source: Mario Kart World Records")
 ```
 
-```{r CHUNK 4, echo = F, eval = F}
+```{r CHUNK 4, echo = F, eval = F, warning = F}
 record_sum_shortcut |>
   mutate(track = fct_reorder(track, avg_time)) |>
   ggplot(aes(x = track, y = avg_time)) +
-  geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
+  geom_segment(aes(xend = track, yend = 0), color = "grey65", linewidth = 1.5) +
   geom_point(size=3.5, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
   coord_flip() +
   theme_minimal() +
   ylab("Average Time (s)") +
   xlab("Track") +
-  labs(title = "Average Time to Complete One Lap (With Shortcuts)",
+  labs(title = "Average Time to Complete One Lap (Shortcut)",
   caption = "Data Source: Mario Kart World Records")
 ```
-
 
 
 ```{r CHUNK 5, echo = F, warning = F, message = F}
@@ -133,6 +129,11 @@ ggplot(record_short, aes(x = reorder(track, shortcut_save), y = shortcut_save)) 
 ```
 
 
+```{r}
+drivers |> 
+  ggplot(aes(x = year, y = records)) +
+  geom_jitter()
+```
 
 
 
