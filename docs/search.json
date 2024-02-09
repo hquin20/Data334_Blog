@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Data334_Blog",
     "section": "",
-    "text": "Mario Kart 64!\n\n\n\n\n\n\n\nGaming\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Mario Kart 64!\n\n\n\n\n\n\n\nGaming\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -21,31 +21,45 @@
     "text": "About this blog"
   },
   {
-    "objectID": "posts/mario_kart_blog/index.html#introduction",
-    "href": "posts/mario_kart_blog/index.html#introduction",
+    "objectID": "posts/mario_kart_blog/index.html",
+    "href": "posts/mario_kart_blog/index.html",
     "title": "Mario Kart 64!",
-    "section": "Introduction",
-    "text": "Introduction\nwhat data set are you working with?\nwhat variables are you most interested in?\nHow many observations are in your data set? - 2334 overall\nwhat is your question of interest?\nWhich track is the fastest?\nHow did the world records develop over time? Which track is the fastest? For which track did the world record improve the most? For how many tracks have shortcuts been discovered? - 12 out of 16 tracks have shortcuts When were shortcuts discovered? On which track does the shortcut save the most time? Which is the longest standing world record? Who is the player with the most world records? Who are recent players?\nwhere did you get the data from? (If possible, give a link to the data source).\nMario Kart World Records\ngithub\nwhat other pieces of context are important to explain to the reader?"
+    "section": "",
+    "text": "Have you ever played the classic Mario Kart game and wondered to yourself during a race, “Should I risk the shortcut?” Well, if you have, I’ve got some answers for you! And you don’t have to only take my word for it- we will be looking at results from the top players in the world, earning records in Mario Kart 64 since 1997.\nFrom personal experience, if you are not an expert Mario Kart player, taking the shortcut can lead to some disadvantages in the heat of a race. If you fall off the track while turning for the shortcut, precious time can be lost while you are dragged back on the the original track. If you hit an object trying to turn on the shortcut, you might have to back up and turn back around, which can also put you behind in a race. For these reasons, it would be beneficial to look at which tracks I should really master the shortcut, and which tracks it would be better to just stay in my lane."
   },
   {
-    "objectID": "posts/mario_kart_blog/index.html#primary-visualizations",
-    "href": "posts/mario_kart_blog/index.html#primary-visualizations",
+    "objectID": "posts/mario_kart_blog/index.html#a-look-at-the-data",
+    "href": "posts/mario_kart_blog/index.html#a-look-at-the-data",
     "title": "Mario Kart 64!",
-    "section": "Primary Visualizations",
-    "text": "Primary Visualizations\nchoose an appropriate visualization, eliminate clutter, and focus attention as appropriate to answer your question of interest.\nprovide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.\n\n\n\n\n\n\nrecords |&gt; \n#  filter(shortcut == \"Yes\") |&gt;\n  group_by(track) |&gt;\n  summarise(n())\n\n# A tibble: 16 × 2\n   track                 `n()`\n   &lt;chr&gt;                 &lt;int&gt;\n 1 Banshee Boardwalk        83\n 2 Bowser's Castle          69\n 3 Choco Mountain          148\n 4 D.K.'s Jungle Parkway   180\n 5 Frappe Snowland         180\n 6 Kalimari Desert         169\n 7 Koopa Troopa Beach       89\n 8 Luigi Raceway           147\n 9 Mario Raceway           160\n10 Moo Moo Farm             81\n11 Rainbow Road            179\n12 Royal Raceway           149\n13 Sherbet Land            143\n14 Toad's Turnpike         196\n15 Wario Stadium           201\n16 Yoshi Valley            160\n\n\n\n\n\n\n\n\nrecords |&gt; \n  filter(track == \"Wario Stadium\", time &lt; 50) |&gt; \n  ggplot(aes(x = date, y = time, color = shortcut)) +\n  geom_point()"
+    "section": "A Look at the Data",
+    "text": "A Look at the Data\nThe data included in this analysis comes from Mario Kart World Records and contains records from players using the Nintendo 64 video game console. The variables that can be found in this data set are listed below.\n\ntrack: Track name\ntype: Single or three lap record\nshortcut: Shortcut or non-shortcut record\nplayer: Player’s name\nsystem_played: Used system (NTSC or PAL)\ndata: World record date\ntime_period: Time (hours/min/s)\ntime: Time in seconds\nrecord_duration: Record duration in days\n\nWe are primarily interested in investigating the length of time it takes to complete tracks with and without their shortcuts, therefore we will be focusing on the track, shortcut, and time variables included above. This data set originally contains 2,334 observations from various players. However, we will not be using all of these cases. Out of the 16 tracks included in this original data, four of the tracks do not include shortcuts (For those who know Mario Kart tracks, these include Bowser’s Castle, Banshee Boardwalk, Koopa Troopa Beach, and Moo Moo Farm). Since we are interested in which tracks will save us the most time by taking that shortcut, we will exclude these tracks from our analysis. We will also only be considering the recorded times of three laps races (the typical amount of laps in a tournament race) instead of a single lap to simplify our discussion."
+  },
+  {
+    "objectID": "posts/mario_kart_blog/index.html#visual-analysis",
+    "href": "posts/mario_kart_blog/index.html#visual-analysis",
+    "title": "Mario Kart 64!",
+    "section": "Visual Analysis",
+    "text": "Visual Analysis\nTo help understand the general time it takes to race around each track, we will take a look at how long it takes players to complete three laps without using any shortcuts.\n\n\n\n\n\nThe graph above demonstrates the average time in seconds it takes to complete three laps around each track without using the shortcut. From this we can tell that Rainbow Road appears to be the longest race, taking around 358 seconds, or 6 minutes and 15 seconds, to complete, followed by Wario Stadium at around 256 seconds, or 4 minutes and 16 seconds. The track with the fastest time is Mario Raceway, with a shorter time of 89 seconds on average (1 minute and 29 seconds). Yoshi Valley follows this track with an average time of 105 seconds, or 1 minute and 45 seconds. It is important to note that standard error for each time above was very small, and therefore was excluded from the plot.\nNow we can begin to examine how much time we can actually save by taking a shortcut. The figure below uses values taken from the difference in seconds between racing without the shortcut and racing with the shortcut. These time differences have been plotted for each track.\n\n\n\n\n\nIt appears that the amount of time saved by taking a shortcut is the most while racing in Wario Stadium, saving on average around 243 seconds of time during the entire race. On Rainbow Road, around 142 seconds have been saved from taking the shortcut. From this, it sounds like taking the shortcut on these tracks would be worth all the risk. On the other hand, taking the shortcut on the Kalimari Desert track appears to only save around 2 seconds of time, so it may be wiser to ignore this shortcut and stay on the main track."
   },
   {
     "objectID": "posts/mario_kart_blog/index.html#conclusion-and-wrap-up",
     "href": "posts/mario_kart_blog/index.html#conclusion-and-wrap-up",
     "title": "Mario Kart 64!",
     "section": "Conclusion and Wrap-Up",
-    "text": "Conclusion and Wrap-Up\nare there any flaws with your approach to analyzing the data you’ve selected?\nare there future directions you would go if you had additional data or more time?"
+    "text": "Conclusion and Wrap-Up\nare there any flaws with your approach to analyzing the data you’ve selected? - you’re probably not as good as the real players :/ so dont worry if your time isnt close to theirs\nare there future directions you would go if you had additional data or more time? - i would look into"
   },
   {
     "objectID": "posts/mario_kart_blog/index.html#connection-to-class-ideas",
     "href": "posts/mario_kart_blog/index.html#connection-to-class-ideas",
     "title": "Mario Kart 64!",
     "section": "Connection to Class Ideas",
-    "text": "Connection to Class Ideas\nAt the end of your write-up, you should connect your visualization(s) to ideas from class. In what ways would you argue your visualization(s) are effective ways of communicating information?"
+    "text": "Connection to Class Ideas\nFor the visualizations included in this blog, I used a limited color scale that is clear and would not confuse readers. I also kept the graphs neat and limited clutter by keeping the background and theme minimal. I enlarged the font of the track and axis titles to make the labels easier to read, and I also arranged the tracks in descending order so that viewers could make quick and accurate judgments about the data being presented."
+  },
+  {
+    "objectID": "posts/mario_kart_blog/index.html#conclusion",
+    "href": "posts/mario_kart_blog/index.html#conclusion",
+    "title": "Mario Kart 64!",
+    "section": "Conclusion",
+    "text": "Conclusion\nOverall, its obvious which shortcuts have saved the best players the most time over the years, but it is important to note some flaws in this analytical approach. The charts in the previous section take the average time over all records achieved from 1997 to 2021, therefore average time shown may not be clearly representative of the exact time it takes for one individual to complete a race. Regardless of this fact, we can still learn which track shortcuts have saved the pros the most time over the years.\nIn the future, it would be interesting to dive into a bit of history surrounding Mario Kart 64, and look into when these shortcuts were each discovered. With the data used in this investigation, it would also be interesting to look at specific players who remained undefeated for the longest amount of time. Another research avenue I would be interested in exploring is within other versions of the game, such as the popular Mario Kart 8 Deluxe played on the Nintendo Switch.\nIn conclusion, whether you are practicing to set the new world record, or just practicing to beat your friends, I would advise to spend some time practicing the shortcuts in Wario Stadium and Rainbow Road, and less time in the Kalimari Desert.\nGood Luck!"
   }
 ]

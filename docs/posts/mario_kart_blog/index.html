@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -182,78 +148,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><img src="mario.jpg" class="img-fluid"></p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>what data set are you working with?</p>
-<p>what variables are you most interested in?</p>
-<p>How many observations are in your data set? - 2334 overall</p>
-<p>what is your question of interest?</p>
-<p>Which track is the fastest?</p>
-<p>How did the world records develop over time? <em>Which track is the fastest?</em> For which track did the world record improve the most? <em>For how many tracks have shortcuts been discovered?</em> - 12 out of 16 tracks have shortcuts When were shortcuts discovered? <em>On which track does the shortcut save the most time?</em> Which is the longest standing world record? Who is the player with the most world records? Who are recent players?</p>
-<p>where did you get the data from? (If possible, give a link to the data source).</p>
-<p>Mario Kart World Records</p>
-<p>github</p>
-<p>what other pieces of context are important to explain to the reader?</p>
+<p>Have you ever played the classic Mario Kart game and wondered to yourself during a race, “Should I risk the shortcut?” Well, if you have, I’ve got some answers for you! And you don’t have to only take my word for it- we will be looking at results from the top players in the world, earning records in <em>Mario Kart 64</em> since 1997.</p>
+<p>From personal experience, if you are not an expert Mario Kart player, taking the shortcut can lead to some disadvantages in the heat of a race. If you fall off the track while turning for the shortcut, precious time can be lost while you are dragged back on the the original track. If you hit an object trying to turn on the shortcut, you might have to back up and turn back around, which can also put you behind in a race. For these reasons, it would be beneficial to look at which tracks I should really master the shortcut, and which tracks it would be better to just stay in my lane.</p>
+<section id="a-look-at-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="a-look-at-the-data">A Look at the Data</h2>
+<p>The data included in this analysis comes from <a href="https://mkwrs.com/">Mario Kart World Records</a> and contains records from players using the Nintendo 64 video game console. The variables that can be found in this data set are listed below.</p>
+<ul>
+<li><p><strong>track</strong>: Track name</p></li>
+<li><p><strong>type</strong>: Single or three lap record</p></li>
+<li><p><strong>shortcut</strong>: Shortcut or non-shortcut record</p></li>
+<li><p><strong>player</strong>: Player’s name</p></li>
+<li><p><strong>system_played</strong>: Used system (NTSC or PAL)</p></li>
+<li><p><strong>data</strong>: World record date</p></li>
+<li><p><strong>time_period</strong>: Time (hours/min/s)</p></li>
+<li><p><strong>time</strong>: Time in seconds</p></li>
+<li><p><strong>record_duration</strong>: Record duration in days</p></li>
+</ul>
+<p>We are primarily interested in investigating the length of time it takes to complete tracks with and without their shortcuts, therefore we will be focusing on the track, shortcut, and time variables included above. This data set originally contains 2,334 observations from various players. However, we will not be using all of these cases. Out of the 16 tracks included in this original data, four of the tracks do not include shortcuts (For those who know Mario Kart tracks, these include <em>Bowser’s Castle</em>, <em>Banshee Boardwalk</em>, <em>Koopa Troopa Beach</em>, and <em>Moo Moo Farm</em>). Since we are interested in which tracks will save us the most time by taking that shortcut, we will exclude these tracks from our analysis. We will also only be considering the recorded times of three laps races (the typical amount of laps in a tournament race) instead of a single lap to simplify our discussion.</p>
 </section>
-<section id="primary-visualizations" class="level2">
-<h2 class="anchored" data-anchor-id="primary-visualizations">Primary Visualizations</h2>
-<p>choose an appropriate visualization, eliminate clutter, and focus attention as appropriate to answer your question of interest.</p>
-<p>provide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.</p>
+<section id="visual-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="visual-analysis">Visual Analysis</h2>
+<p>To help understand the general time it takes to race around each track, we will take a look at how long it takes players to complete three laps without using any shortcuts.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/CHUNK 3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>records <span class="sc">|&gt;</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  filter(shortcut == "Yes") |&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(track) <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 2
-   track                 `n()`
-   &lt;chr&gt;                 &lt;int&gt;
- 1 Banshee Boardwalk        83
- 2 Bowser's Castle          69
- 3 Choco Mountain          148
- 4 D.K.'s Jungle Parkway   180
- 5 Frappe Snowland         180
- 6 Kalimari Desert         169
- 7 Koopa Troopa Beach       89
- 8 Luigi Raceway           147
- 9 Mario Raceway           160
-10 Moo Moo Farm             81
-11 Rainbow Road            179
-12 Royal Raceway           149
-13 Sherbet Land            143
-14 Toad's Turnpike         196
-15 Wario Stadium           201
-16 Yoshi Valley            160</code></pre>
-</div>
-</div>
+<p>The graph above demonstrates the average time in seconds it takes to complete three laps around each track without using the shortcut. From this we can tell that <em>Rainbow Road</em> appears to be the longest race, taking around 358 seconds, or 6 minutes and 15 seconds, to complete, followed by <em>Wario Stadium</em> at around 256 seconds, or 4 minutes and 16 seconds. The track with the fastest time is <em>Mario Raceway</em>, with a shorter time of 89 seconds on average (1 minute and 29 seconds). <em>Yoshi Valley</em> follows this track with an average time of 105 seconds, or 1 minute and 45 seconds. It is important to note that standard error for each time above was very small, and therefore was excluded from the plot.</p>
+<p>Now we can begin to examine how much time we can actually save by taking a shortcut. The figure below uses values taken from the difference in seconds between racing without the shortcut and racing with the shortcut. These time differences have been plotted for each track.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/CHUNK 5-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/CHUNK 4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>records <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(track <span class="sc">==</span> <span class="st">"Wario Stadium"</span>, time <span class="sc">&lt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> time, <span class="at">color =</span> shortcut)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<p>It appears that the amount of time saved by taking a shortcut is the most while racing in <em>Wario Stadium</em>, saving on average around 243 seconds of time during the entire race. On <em>Rainbow Road</em>, around 142 seconds have been saved from taking the shortcut. From this, it sounds like taking the shortcut on these tracks would be worth all the risk. On the other hand, taking the shortcut on the <em>Kalimari Desert</em> track appears to only save around 2 seconds of time, so it may be wiser to ignore this shortcut and stay on the main track.</p>
 </section>
-<section id="conclusion-and-wrap-up" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion-and-wrap-up">Conclusion and Wrap-Up</h2>
-<p>are there any flaws with your approach to analyzing the data you’ve selected?</p>
-<p>are there future directions you would go if you had additional data or more time?</p>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Overall, its obvious which shortcuts have saved the best players the most time over the years, but it is important to note some flaws in this analytical approach. The charts in the previous section take the average time over all records achieved from 1997 to 2021, therefore average time shown may not be clearly representative of the exact time it takes for one individual to complete a race. Regardless of this fact, we can still learn which track shortcuts have saved the pros the most time over the years.</p>
+<p>In the future, it would be interesting to dive into a bit of history surrounding <em>Mario Kart 64</em>, and look into when these shortcuts were each discovered. With the data used in this investigation, it would also be interesting to look at specific players who remained undefeated for the longest amount of time. Another research avenue I would be interested in exploring is within other versions of the game, such as the popular <em>Mario Kart 8 Deluxe</em> played on the Nintendo Switch.</p>
+<p>In conclusion, whether you are practicing to set the new world record, or just practicing to beat your friends, I would advise to spend some time practicing the shortcuts in <em>Wario Stadium</em> and <em>Rainbow Road</em>, and less time in the <em>Kalimari Desert</em>.</p>
+<p>Good Luck!</p>
 </section>
 <section id="connection-to-class-ideas" class="level2">
 <h2 class="anchored" data-anchor-id="connection-to-class-ideas">Connection to Class Ideas</h2>
-<p>At the end of your write-up, you should connect your visualization(s) to ideas from class. In what ways would you argue your visualization(s) are effective ways of communicating information?</p>
+<p>For the visualizations included in this blog, I used a limited color scale that is clear and would not confuse readers. I also kept the graphs neat and limited clutter by keeping the background and theme minimal. I enlarged the font of the track and axis titles to make the labels easier to read, and I also arranged the tracks in descending order so that viewers could make quick and accurate judgments about the data being presented.</p>
 
 
 </section>
