@@ -15,100 +15,87 @@ library(here)
 ```
 
 ```{r CHUNK 1, echo = F, warning = F, message = F}
-#records <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv')
-drivers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/drivers.csv')
-
 records <- read.csv(here("data/records.csv"))
 ```
 
 ![](mario.jpg)
 
+Have you ever played the classic Mario Kart game and wondered to yourself during a race, "Should I risk the shortcut?" Well, if you have, I've got some answers for you! And you don't have to only take my word for it- we will be looking at results from the top players in the world, earning records in *Mario Kart 64* since 1997.
 
+From personal experience, if you are not an expert Mario Kart player, taking the shortcut can lead to some disadvantages in the heat of a race. If you fall off the track while turning for the shortcut, precious time can be lost while you are dragged back on the the original track. If you hit an object trying to turn on the shortcut, you might have to back up and turn back around, which can also put you behind in a race. For these reasons, it would be beneficial to look at which tracks I should really master the shortcut, and which tracks it would be better to just stay in my lane. 
 
+## A Look at the Data
 
-## Introduction
+The data included in this analysis comes from [Mario Kart World Records](https://mkwrs.com/) and contains records from players using the Nintendo 64 video game console. The variables that can be found in this data set are listed below. 
 
-what data set are you working with? - mario kart
+- **track**: Track name
 
-what variables are you most interested in? - track, shortcut, time
+- **type**: Single or three lap record
 
-How many observations are in your data set? - 2334 overall
+- **shortcut**: Shortcut or non-shortcut record
 
-what is your question of interest? - Which track is the fastest?
+- **player**: Player's name
 
+- **system_played**: Used system (NTSC or PAL)
 
-How did the world records develop over time?
-*Which track is the fastest?* 
-For which track did the world record improve the most?
-*For how many tracks have shortcuts been discovered?* - 12 out of 16 tracks have shortcuts
-When were shortcuts discovered?
-*On which track does the shortcut save the most time?*
-Which is the longest standing world record?
-Who is the player with the most world records?
-Who are recent players?
+- **data**: World record date
 
+- **time_period**: Time (hours/min/s)
 
-where did you get the data from?
-(If possible, give a link to the data source). - Mario Kart World Records
+- **time**: Time in seconds
 
-what other pieces of context are important to explain to the reader? - looking at single laps
+- **record_duration**: Record duration in days
 
-
+We are primarily interested in investigating the length of time it takes to complete tracks with and without their shortcuts, therefore we will be focusing on the track, shortcut, and time variables included above. This data set originally contains 2,334 observations from various players. However, we will not be using all of these cases. Out of the 16 tracks included in this original data, four of the tracks do not include shortcuts (For those who know Mario Kart tracks, these include *Bowser's Castle*, *Banshee Boardwalk*, *Koopa Troopa Beach*, and *Moo Moo Farm*). Since we are interested in which tracks will save us the most time by taking that shortcut, we will exclude these tracks from our analysis. We will also only be considering the recorded times of three laps races (the typical amount of laps in a tournament race) instead of a single lap to simplify our discussion. 
 
 ```{r CHUNK 2, echo = F, message = F, warning = F}
 record_sum_nshortcut <- records |>
-  filter(shortcut == "No", type == "Single Lap") |>
+  filter(shortcut == "No", type == "Three Lap") |>
   group_by(track) |>
   summarise(avg_time = mean(time), n = n()) |>
   arrange(avg_time, desc = T) |>
   mutate(se = avg_time / n, 
          lb_se = avg_time - se,
          ub_se = avg_time + se)
-
-record_sum_shortcut <- records |>
-  filter(shortcut == "Yes", type == "Single Lap") |>
-  group_by(track) |>
-  summarise(avg_time = mean(time), n = n()) |>
-  arrange(avg_time, desc = T)
 ```
 
-## Primary Visualizations
+## Visual Analysis
 
-choose an appropriate visualization, eliminate clutter, and focus attention as appropriate to answer your question of interest.
-
-provide a written interpretation of each visualization you have, explaining what a reader should “take away” from each visualization.
+To help understand the general time it takes to race around each track, we will take a look at how long it takes players to complete three laps without using any shortcuts. 
 
 ```{r CHUNK 3, echo = F, warning = F}
 record_sum_nshortcut |>
+  filter(track != "Bowser's Castle", 
+         track != "Banshee Boardwalk", 
+         track != "Koopa Troopa Beach", 
+         track != "Moo Moo Farm") |>
   mutate(track = fct_reorder(track, avg_time)) |>
   ggplot(aes(x = track, y = avg_time)) +
-  geom_segment(aes(xend = track, yend = 0), color = "grey65", linewidth = 1.5) +
-  geom_point(size=3.5, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
+  geom_segment(aes(xend = track, yend = 0), 
+               color = "grey65", 
+               linewidth = 1.5) +
+  geom_point(size = 3.5, 
+             color = "red", 
+             fill = alpha("orange"), 
+             shape = 21, 
+             stroke = 1.5) +
   coord_flip() +
   theme_minimal() +
   ylab("Average Time (s)") +
   xlab("Track") +
-  labs(title = "Average Time to Complete One Lap (Non-Shortcut)",
+  theme(axis.text=element_text(size = 12),
+        axis.title=element_text(size = 13)) +
+  labs(title = "Average Time to Complete 3 Laps (Non-Shortcut)",
   caption = "Data Source: Mario Kart World Records")
 ```
 
-```{r CHUNK 4, echo = F, eval = F, warning = F}
-record_sum_shortcut |>
-  mutate(track = fct_reorder(track, avg_time)) |>
-  ggplot(aes(x = track, y = avg_time)) +
-  geom_segment(aes(xend = track, yend = 0), color = "grey65", linewidth = 1.5) +
-  geom_point(size=3.5, color="red", fill=alpha("orange"), shape=21, stroke=1.5) +
-  coord_flip() +
-  theme_minimal() +
-  ylab("Average Time (s)") +
-  xlab("Track") +
-  labs(title = "Average Time to Complete One Lap (Shortcut)",
-  caption = "Data Source: Mario Kart World Records")
-```
+The graph above demonstrates the average time in seconds it takes to complete three laps around each track without using the shortcut. From this we can tell that *Rainbow Road* appears to be the longest race, taking around 358 seconds, or 6 minutes and 15 seconds, to complete, followed by *Wario Stadium* at around 256 seconds, or 4 minutes and 16 seconds. The track with the fastest time is *Mario Raceway*, with a shorter time of 89 seconds on average (1 minute and 29 seconds). *Yoshi Valley* follows this track with an average time of 105 seconds, or 1 minute and 45 seconds. It is important to note that standard error for each time above was very small, and therefore was excluded from the plot. 
 
+Now we can begin to examine how much time we can actually save by taking a shortcut. The figure below uses values taken from the difference in seconds between racing without the shortcut and racing with the shortcut. These time differences have been plotted for each track.
 
-```{r CHUNK 5, echo = F, warning = F, message = F}
+```{r CHUNK 4, echo = F, warning = F, message = F}
 record_short <- records |>
+  filter(type == "Three Lap") |>
   group_by(shortcut, track) |>
   summarise(mean = mean(time)) |>
   pivot_wider(names_from = shortcut, values_from = mean) |>
@@ -116,46 +103,37 @@ record_short <- records |>
   filter(shortcut_save != "NA") |>
   mutate(shortcut_save = as.numeric(shortcut_save)) 
 
-
 ggplot(record_short, aes(x = reorder(track, shortcut_save), y = shortcut_save)) +
   geom_segment(aes(xend = track, yend = 0), color = "grey65", size = 1.5) +
-  geom_point(size=3.5, color="seagreen", fill=alpha("darkseagreen"), shape=21, stroke=1.5) +
+  geom_point(size = 3.5, 
+             color = "seagreen", 
+             fill = alpha("darkseagreen"), 
+             shape = 21, 
+             stroke = 1.5) +
   coord_flip() +
   theme_minimal() +
-  ylab("Time (s)") +
+  ylab("Time Difference (s)") +
   xlab("Track") +
+  theme(axis.text=element_text(size = 11),
+        axis.title=element_text(size = 13)) +
   labs(title = "Average Time Saved Using Shortcuts",
   caption = "Data Source: Mario Kart World Records")
 ```
 
-
-```{r}
-drivers |> 
-  ggplot(aes(x = year, y = records)) +
-  geom_jitter()
-```
+It appears that the amount of time saved by taking a shortcut is the most while racing in *Wario Stadium*, saving on average around 243 seconds of time during the entire race. On *Rainbow Road*, around 142 seconds have been saved from taking the shortcut. From this, it sounds like taking the shortcut on these tracks would be worth all the risk. On the other hand, taking the shortcut on the *Kalimari Desert* track appears to only save around 2 seconds of time, so it may be wiser to ignore this shortcut and stay on the main track. 
 
 
+## Conclusion
 
-## Conclusion and Wrap-Up
+Overall, its obvious which shortcuts have saved the best players the most time over the years, but it is important to note some flaws in this analytical approach. The charts in the previous section take the average time over all records achieved from 1997 to 2021, therefore average time shown may not be clearly representative of the exact time it takes for one individual to complete a race. Regardless of this fact, we can still learn which track shortcuts have saved the pros the most time over the years. 
 
-are there any flaws with your approach to analyzing the data you’ve selected?
+In the future, it would be interesting to dive into a bit of history surrounding *Mario Kart 64*, and look into when these shortcuts were each discovered. With the data used in this investigation, it would also be interesting to look at specific players who remained undefeated for the longest amount of time. Another research avenue I would be interested in exploring is within other versions of the game, such as the popular *Mario Kart 8 Deluxe* played on the Nintendo Switch.
 
-are there future directions you would go if you had additional data or more time?
+In conclusion, whether you are practicing to set the new world record, or just practicing to beat your friends, I would advise to spend some time practicing the shortcuts in *Wario Stadium* and *Rainbow Road*, and less time in  the *Kalimari Desert*. 
+
+Good Luck!
 
 ## Connection to Class Ideas
 
-At the end of your write-up, you should connect your visualization(s) to ideas from class.
-In what ways would you argue your visualization(s) are effective ways of communicating information?
-
-
-
-
-
-
-
-
-
-
-
+For the visualizations included in this blog, I used a limited color scale that is clear and would not confuse readers. I also kept the graphs neat and limited clutter by keeping the background and theme minimal. I enlarged the font of the track and axis titles to make the labels easier to read, and I also arranged the tracks in descending order so that viewers could make quick and accurate judgments about the data being presented. 
 
