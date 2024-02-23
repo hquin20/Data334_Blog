@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/tornado_blog/index.html",
       "/posts/mario_kart_blog/index.html",
       "/posts/welcome/index.html"
     ]
