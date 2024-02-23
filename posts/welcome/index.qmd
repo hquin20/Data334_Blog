@@ -3,6 +3,7 @@ title: "Welcome To My Blog"
 author: "Hailey Quintavalle"
 date: "2024-01-28"
 categories: [Welcome]
+image: thumbnail.jpg
 ---
 
 This is the first post in a Quarto blog. Welcome!
