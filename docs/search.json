@@ -40,5 +40,12 @@
     "title": "Tornadoes!",
     "section": "Connection to Class Ideas",
     "text": "Connection to Class Ideas\nTo make the visualizations more appealing, I added color to all of them. In the first plot, I added a red dot that would stand out and draw attention to the peak I wanted to further investigate. I chose a continuous color scale for the map that could accurately represent the number of tornadoes in each state and chose a color palette that could be interpreted by everyone. I also increased the font size of the labels on both of the line plots so that they were easier to read."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   }
 ]
