@@ -21,7 +21,7 @@ library(usdata)
 tornados <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-16/tornados.csv')
 ```
 
-Tornadoes are a natural weather phenomenon that has intrigued storm chasers and weather gurus for years. If you're thinking about moving to the Midwest part of the United States any time soon, they are a good factor to consider. Tornadoes can be devastating, usually taking down every structure in its path. We will be investigating tornado trends over the past 70 years, looking at when and where the most tornadoes have touched the ground over the time. 
+Tornadoes are a natural weather phenomenon that have intrigued storm chasers and weather gurus for years. If you're thinking about moving to the Midwest part of the United States any time soon, they are a good factor to consider. Tornadoes can be devastating, usually taking down every structure in its path. We will be investigating tornado trends over the past 70 years, looking at when and where the most tornadoes have touched the ground over the time. 
  
 ## A Look at the Data
 
