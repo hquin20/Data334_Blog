@@ -2,9 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/ufo_sightings_blog/index.html",
       "/posts/tornado_blog/index.html",
-      "/posts/mario_kart_blog/index.html",
-      "/posts/welcome/index.html"
+      "/posts/mario_kart_blog/index.html"
     ]
   }
 ]

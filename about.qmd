@@ -1,19 +1,19 @@
 ---
 title: "About"
-image: profile.jpg
+image: HaileyQuintavalle_headshot.jpg
 about:
   template: jolla
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/hailey-quintavalle-b8071221b/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/hquin20/Data334_Blog
 
 ---
 
-About this blog
+Hello! My name is Hailey and this is my official blog for my Data Visualization class. I am a senior at St. Lawrence University, majoring in statistics and psychology. I like to investigate random topics I find interesting in the moment and I hope you find them interesting as well!
+
+
+

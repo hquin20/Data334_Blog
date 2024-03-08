@@ -1,0 +1,190 @@
+---
+title: "UFO Sightings!"
+author: "Hailey Quintavalle"
+date: "2024-03-05"
+categories: [UFO, Blog]
+image: ufo.webp
+---
+
+```{r message = F, warning = F, echo = F}
+library(tidyverse)
+library(usdata)
+library(here)
+
+ufo_sightings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-06-20/ufo_sightings.csv')
+places <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-06-20/places.csv')
+world_population_data <- read_csv(here("data/world_population_data.csv"))
+
+```
+
+![](sky.webp)
+
+Have you ever looked to the sky and thought about the possibility of life beyond our planet? Maybe spotted some weird shape or suspicious blinking lights flying around in the night sky?  Well, whether you're a skeptic or believer, thousands of UFO sightings - or unidentified flying objects - get reported around the world every year. For this analysis, we will be investigating when and where most of these reports have occurred. 
+
+
+## A Look at the Data
+
+The data used within this analysis comes from the [Nation UFO Reporting Center](https://nuforc.org/ndx/?id=shape) (NUFORC). We will also be using a data set containing information on world population, used by the [World Population Review](https://worldpopulationreview.com/). The primary data set from the NUFORC contains UFO sightings reported in 1925 all the way to the present year. 
+
+Here are some of the interesting variables included in the NUFORC's data set:
+
+- **reported_date_time:** the time and date of the sighting, as it appears in the original NUFORC data
+
+- **country:** the name of the country
+
+- **state:** the state, province, or similar division of the sighting
+
+- **city:** the city of the sighting
+
+- **shape:** the reported shape of the craft
+
+- **reported_duration:** the reported duration of the event, in the reporter's words
+
+- **summary:** the reported summary of the event
+
+- **has_images:** whether the sighting has images available on NUFORC
+
+- **day_part:** the approximate part of the day in which the sighting took place
+
+For our research, we will be only looking at variables relating to the time and place at which the sightings were reported. 
+
+## Visual Analysis
+
+To begin our analysis, we will take a look at the amount of sightings that have been reported over time. 
+
+```{r, echo = F, message = F, warning = F}
+ufo_sightings$Date <- as.Date(ufo_sightings$reported_date_time_utc)
+
+ufo_sightings$Time <- format(as.POSIXct(ufo_sightings$reported_date_time_utc), format = "%H:%M:%S") 
+ 
+ufo_sightings$year <- format(as.Date(ufo_sightings$Date, format="%Y/%m/%d"),"%Y")
+
+ufo_sightings$month <- format(as.Date(ufo_sightings$Date, format="%Y/%m/%d"),"%m")
+
+# filter out white space where line is at 0
+ufo_sightings_year <- ufo_sightings %>%
+  group_by(year) %>%
+  summarise(n_count = n()) %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(year > 1990)
+
+top_year <- ufo_sightings_year |> group_by(year) |> summarise(n_count = max(n_count)) |> filter(year == 2014)
+```
+
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE}
+ggplot(data = ufo_sightings_year, aes(y = n_count, x = year)) + 
+  geom_line(linewidth = 1, color = "cornflowerblue") + 
+  geom_point(data = top_year, aes(x = year, y = n_count), size = 3, color = "darkred") +
+  geom_text(data = top_year, aes(label = "6,845 sightings in 2014"), 
+            position = position_dodge(width = 1), 
+            hjust = -0.1, 
+            size = 3.8) +
+  theme_minimal() + 
+  scale_x_continuous(breaks = seq(1990, 2025, by = 5)) + 
+  labs(x= "\nYear", y = "Total UFO Sightings\n ", 
+       title = "Number of UFO Sightings from 1990 - Present",
+        caption = "Data Source: National UFO Reporting Center") +
+  theme(axis.text=element_text(size = 11),
+        axis.title=element_text(size = 12))
+```
+
+The plot above demonstrates the total number of sightings recorded in each year, starting from the year 1990. We chose to only show years starting at 1990 because there are little sightings recorded in the previous years, going back to 1925. It can also be seen that the year with the most recorded sightings took place in 2014, with a total of 6,845 sightings. Since then, the amount of sightings seem to be decreasing, with a small peak appearing in 2020. Could one explanation be that people were spending significantly more time outside looking at the sky during the COVID-19 pandemic while stuck at home? Let's take a closer look at where the majority of UFO sightings are being reported from. 
+
+```{r, echo = F, message = F, warning = F}
+places_fixed <- places %>%
+  mutate(country = recode(country, "Usa" = "United States", "USA" = "United States", "Guyana, South America" = "Guyana", "Hong Kong SAR" = "Hong Kong", "ITALY" = "Italy",
+"Japan (Okinawa)" = "Japan", "Kazakstan" = "Kazakhstan", "Kenya (East Africa)" = "Kenya", "Luxemburg" = "Luxembourg", "Macedonia (FYROM)" = "Macedonia", 	
+"Mauritius Island" = "Mauritius", "Moldova (Republic of )" = "Moldova", "Myanmar (Burma)" = "Myanmar", "Netherlands The" = "Netherlands", "New Zealand -Taranaki" = "New Zealand", "Nigeria 🇳🇬" = "Nigeria", "PUERTO RICO" = "Puerto Rico", "Panama Canal Zone" = "Panama", "Puerto Rico Commonwealth" = "Puerto Rico", "Republic of Macedonia" = "Macedonia", "Republic of Panama" = "Panama", "Republic of South Africa" = "South Africa", "Russian Federation" = "Russia", "Slovak Republic" = "Slovakia",
+"Sri lanka" = "Sri Lanka", "Trinidad" = "Trinidad and Tobago", "Trinidad/Tobago" = "Trinidad and Tobago", "US Virgin Islands" = "U.S. Virgin Islands", "	
+Viet Nam" = "Vietnam", "Western Australia" = "Australia", "canada" = "Canada", "finland" = "Finland", "great britain" = "Great Britain", "south africa" = "South Africa", "turkey" = "Turkey", "united kingdom" = "United Kingdom", "usa" = "United States", "CZECH republic" = "Czech Republic", "Croatia (Hrvatska)" = "Croatia", "Czech republic" = "Czech Republic", "Dominican republic" = "Dominican Republic", "Republic of Ireland" = "Ireland", "Viet Nam" = "Vietnam", "Germany (West Germany)" = "Germany", "West Germany" = "Germany", "United Arad Emirates" = "United Arab Emirates")) %>%
+  select(country) %>%
+  group_by(country) %>%
+  summarise(count = n()) 
+
+new_dataset_population <- left_join(places_fixed, world_population_data)
+
+scaled_count <- new_dataset_population %>%
+  mutate(scaled = count/ `2022`)
+```
+
+
+```{r, echo = F, message = F, warning = F}
+places |> group_by(country) |> summarise(n = n()) |> arrange(desc(n)) |> slice(1:10) |> 
+  ggplot(aes(x = fct_reorder(country, n), y = n)) +
+  geom_segment(aes(xend = country, yend = 0), linewidth = 1, color = "darkslategray4") + 
+  geom_point(size = 2.5, color = "darkslategrey") + 
+  coord_flip() + 
+  theme_minimal() + 
+  labs(y = "\nNumber of Sightings", 
+       x = "Country",
+       caption = "Data Source: National UFO Reporting Center",
+       title = "Top 10 Countries with the Most UFO Sightings") +
+  theme(axis.text=element_text(size = 11),
+        axis.title=element_text(size = 12),
+        axis.text.x = element_text(hjust = 0.75))
+```
+
+The plot above demonstrates the ten countries with the most UFO sightings across all years included in our data set. The USA shows an overwhelming majority of cases, but it can be difficult to make judgments based on these numbers alone. The countries on this list differ by population, so to account for these differences and make better comparisons, we have scaled the number of sightings by the population size of each country in the plot below. 
+
+
+```{r, echo = F, message = F, warning = F}
+scaled_count %>% arrange(desc(count)) |> slice(1:10) |> 
+  ggplot(aes(x = fct_reorder(country, scaled), y = (scaled)*100000)) +
+  geom_segment(aes(xend = country, yend = 0), linewidth = 1, color = "darkolivegreen4") +
+  geom_point(size = 2.5, color = "darkolivegreen") + 
+  coord_flip() + 
+  theme_minimal() +
+  labs(y = "\nNumber of Sightings per 100,000 people",
+       x = "Country",
+       caption = "Data Source: National UFO Reporting Center; World Population Review",
+       title = "Top 10 Countries with the Most UFO Sightings (scaled by population)") +
+  theme(axis.text=element_text(size = 11),
+        axis.title=element_text(size = 12))
+```
+
+This plot allows us to have a better idea of the amount of reports in each country relative to the amount of people who live there. It is still the case, however, that the United States owns the majority of these sightings. To take a closer look at what is going on in the US when it comes to spotting a UFO, we can look at where in the US the most sightings have occurred. 
+
+```{r echo = F, message = F, warning = F}
+places_usa <- places |> filter(country == "USA") |> group_by(state) |> summarise(n = n())
+
+state_df <- ggplot2::map_data("state")
+state_stats <- state_stats |> mutate(state = str_to_lower(state))
+state_full <- left_join(state_df, state_stats, by = c("region" = "state"))
+
+
+places_usa_sum <- left_join(places_usa, state_full, by = c("state" = "abbr"))
+
+ggplot(data = places_usa_sum, aes(x = long, y = lat, group = group)) +
+  geom_polygon(color = "black", aes(fill = n), linewidth = 0.8) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  theme_void() +
+  scale_fill_viridis_c(name = "Number of\nReports") +
+  theme(legend.position = c(0.9,0.5)) +
+  labs(title = "  Number UFO of Sightings Reported Across the US",
+       caption = "Data Source: National UFO Reporting Center  ")
+```
+
+The map above shows us the amount of sightings that have been reported across each state in the US. Interestingly, it seems that the most reports come from California, followed by New York, Pennsylvania, then Texas. It is important the note here that these are some of the states with the most amount of people due to their large cities, and the higher number of reports could be due to the higher amount of people. It is interesting however, that the order of states with the most sightings is not directly correlated with the population of that state. 
+
+
+## Conclusion
+
+In conclusion, we found that the number of UFO sightings began steadily increasing in the 90's and peaking in 2014. After 2014, the number of UFO sightings have decreased, with a small increase in 2020. We also found that the United States holds the most number of reported sightings in the world. California takes the lead with the highest number of sightings in the US, followed by New York.
+
+If we had more time with this project, we would have included Hawaii and Alaska in our map of the US, although the number of sightings in those states were very low. We would also have looked into the amount of sightings in each state when scaled by their population size to further investigate the number of sightings reported in each state. 
+
+In the future, it would be interesting to investigate some of the other variables included in the NUFORC's data that relate to the report itself, such as the shape of the object or duration of time it was seen. Whether you're a believer or not, the amount of worldwide sightings is interesting, so maybe tonight you should spare a moment to look up at the sky and see if you spot anything out of the ordinary! 
+
+## Connection to Class Ideas
+
+We chose to only display years after 1990 in our first line plot in order to eliminate unnecessary white space and more easily see the trend of sightings during this time. It was also decided to place a red dot and a label on the year with the highest number of sightings to draw attention to this year specifically. We chose to color each of our plots to make them more visually engaging and we enlarged the font size of all the labels in the plots to make them easier to read. For the map, we chose a continuous color scale to help decipher the differences among states more accurately. 
+
+## Partner 
+
+For this project I partnered with Hope Donoghue. 
+
+
+
+
+

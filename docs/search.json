@@ -1,10 +1,45 @@
 [
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "posts/ufo_sightings_blog/index.html",
+    "href": "posts/ufo_sightings_blog/index.html",
+    "title": "UFO Sightings!",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Have you ever looked to the sky and thought about the possibility of life beyond our planet? Maybe spotted some weird shape or suspicious blinking lights flying around in the night sky? Well, whether you’re a skeptic or believer, thousands of UFO sightings - or unidentified flying objects - get reported around the world every year. For this analysis, we will be investigating when and where most of these reports have occurred."
+  },
+  {
+    "objectID": "posts/ufo_sightings_blog/index.html#a-look-at-the-data",
+    "href": "posts/ufo_sightings_blog/index.html#a-look-at-the-data",
+    "title": "UFO Sightings!",
+    "section": "A Look at the Data",
+    "text": "A Look at the Data\nThe data used within this analysis comes from the Nation UFO Reporting Center (NUFORC). We will also be using a data set containing information on world population, used by the World Population Review. The primary data set from the NUFORC contains UFO sightings reported in 1925 all the way to the present year.\nHere are some of the interesting variables included in the NUFORC’s data set:\n\nreported_date_time: the time and date of the sighting, as it appears in the original NUFORC data\ncountry: the name of the country\nstate: the state, province, or similar division of the sighting\ncity: the city of the sighting\nshape: the reported shape of the craft\nreported_duration: the reported duration of the event, in the reporter’s words\nsummary: the reported summary of the event\nhas_images: whether the sighting has images available on NUFORC\nday_part: the approximate part of the day in which the sighting took place\n\nFor our research, we will be only looking at variables relating to the time and place at which the sightings were reported."
+  },
+  {
+    "objectID": "posts/ufo_sightings_blog/index.html#visual-analysis",
+    "href": "posts/ufo_sightings_blog/index.html#visual-analysis",
+    "title": "UFO Sightings!",
+    "section": "Visual Analysis",
+    "text": "Visual Analysis\nTo begin our analysis, we will take a look at the amount of sightings that have been reported over time.\n\n\n\n\n\nThe plot above demonstrates the total number of sightings recorded in each year, starting from the year 1990. We chose to only show years starting at 1990 because there are little sightings recorded in the previous years, going back to 1925. It can also be seen that the year with the most recorded sightings took place in 2014, with a total of 6,845 sightings. Since then, the amount of sightings seem to be decreasing, with a small peak appearing in 2020. Could one explanation be that people were spending significantly more time outside looking at the sky during the COVID-19 pandemic while stuck at home? Let’s take a closer look at where the majority of UFO sightings are being reported from.\n\n\n\n\n\nThe plot above demonstrates the ten countries with the most UFO sightings across all years included in our data set. The USA shows an overwhelming majority of cases, but it can be difficult to make judgments based on these numbers alone. The countries on this list differ by population, so to account for these differences and make better comparisons, we have scaled the number of sightings by the population size of each country in the plot below.\n\n\n\n\n\nThis plot allows us to have a better idea of the amount of reports in each country relative to the amount of people who live there. It is still the case, however, that the United States owns the majority of these sightings. To take a closer look at what is going on in the US when it comes to spotting a UFO, we can look at where in the US the most sightings have occurred.\n\n\n\n\n\nThe map above shows us the amount of sightings that have been reported across each state in the US. Interestingly, it seems that the most reports come from California, followed by New York, Pennsylvania, then Texas. It is important the note here that these are some of the states with the most amount of people due to their large cities, and the higher number of reports could be due to the higher amount of people. It is interesting however, that the order of states with the most sightings is not directly correlated with the population of that state."
+  },
+  {
+    "objectID": "posts/ufo_sightings_blog/index.html#conclusion",
+    "href": "posts/ufo_sightings_blog/index.html#conclusion",
+    "title": "UFO Sightings!",
+    "section": "Conclusion",
+    "text": "Conclusion\nIn conclusion, we found that the number of UFO sightings began steadily increasing in the 90’s and peaking in 2014. After 2014, the number of UFO sightings have decreased, with a small increase in 2020. We also found that the United States holds the most number of reported sightings in the world. California takes the lead with the highest number of sightings in the US, followed by New York.\nIf we had more time with this project, we would have included Hawaii and Alaska in our map of the US, although the number of sightings in those states were very low. We would also have looked into the amount of sightings in each state when scaled by their population size to further investigate the number of sightings reported in each state.\nIn the future, it would be interesting to investigate some of the other variables included in the NUFORC’s data that relate to the report itself, such as the shape of the object or duration of time it was seen. Whether you’re a believer or not, the amount of worldwide sightings is interesting, so maybe tonight you should spare a moment to look up at the sky and see if you spot anything out of the ordinary!"
+  },
+  {
+    "objectID": "posts/ufo_sightings_blog/index.html#connection-to-class-ideas",
+    "href": "posts/ufo_sightings_blog/index.html#connection-to-class-ideas",
+    "title": "UFO Sightings!",
+    "section": "Connection to Class Ideas",
+    "text": "Connection to Class Ideas\nWe chose to only display years after 1990 in our first line plot in order to eliminate unnecessary white space and more easily see the trend of sightings during this time. It was also decided to place a red dot and a label on the year with the highest number of sightings to draw attention to this year specifically. We chose to color each of our plots to make them more visually engaging and we enlarged the font size of all the labels in the plots to make them easier to read. For the map, we chose a continuous color scale to help decipher the differences among states more accurately."
+  },
+  {
+    "objectID": "posts/ufo_sightings_blog/index.html#partner",
+    "href": "posts/ufo_sightings_blog/index.html#partner",
+    "title": "UFO Sightings!",
+    "section": "Partner",
+    "text": "Partner\nFor this project I partnered with Hope Donoghue."
   },
   {
     "objectID": "posts/mario_kart_blog/index.html",
@@ -46,14 +81,14 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this blog"
+    "text": "Hello! My name is Hailey and this is my official blog for my Data Visualization class. I am a senior at St. Lawrence University, majoring in statistics and psychology. I like to investigate random topics I find interesting in the moment and I hope you find them interesting as well!"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data334_Blog",
     "section": "",
-    "text": "Tornadoes!\n\n\n\n\n\n\n\nWeather\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nFeb 19, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nMario Kart 64!\n\n\n\n\n\n\n\nGaming\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\nNo matching items"
+    "text": "UFO Sightings!\n\n\n\n\n\n\n\nUFO\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nTornadoes!\n\n\n\n\n\n\n\nWeather\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nFeb 19, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\n  \n\n\n\n\nMario Kart 64!\n\n\n\n\n\n\n\nGaming\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nHailey Quintavalle\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/tornado_blog/index.html",
