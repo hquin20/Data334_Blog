@@ -3,14 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "Data334_Blog"
+  title: "Data Visualization"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/hquin20/Data334_Blog
+      - icon: linkedin
+        href: https://www.linkedin.com/in/hailey-quintavalle-b8071221b/
 format:
   html:
     theme: slate
