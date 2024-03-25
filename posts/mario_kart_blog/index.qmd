@@ -9,7 +9,7 @@ editor:
     wrap: sentence
 ---
 
-```{r CHUNK 0, message=FALSE, echo=FALSE}
+```{r CHUNK 0, message=FALSE, echo=FALSE, warning = F}
 library(tidyverse)
 library(here)
 ```
