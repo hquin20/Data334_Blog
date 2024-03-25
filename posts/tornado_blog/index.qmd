@@ -49,7 +49,7 @@ For our research, we will be only focusing on tornado reports on the contiguous 
 
 To begin, we will look at the number of tornadoes reported each year since 1950. 
 
-```{r echo = F}
+```{r echo = F, message = F, warning = F}
 high <- tornados |> filter(yr == 2004) |> group_by(yr) |> summarise(n = n())
 
 tornados |> group_by(yr) |> summarise(n = n()) |>
@@ -67,7 +67,7 @@ tornados |> group_by(yr) |> summarise(n = n()) |>
 
 From the plot above we can see that throughout the late 1900's, the number of tornadoes per year varies, but overall tends to slowly increase. The red dot represents the year with the most tornadoes recorded by the NOAA. This year is 2004, with a record number of 1,817 tornadoes. To get a closer look of what was happening in 2004, we will investigate where in the US tornadoes were touching down during this time. 
 
-```{r echo = F}
+```{r echo = F, message = F, warning = F}
 n_tornados <- tornados |> filter(yr == 2004# , mo == 5, dy == 30
                                  ) |> group_by(st) |> summarize(n_tornados = n()) 
 
@@ -82,7 +82,7 @@ tornados_full <- left_join(n_tornados, state_full, by = c("st" = "abbr"))
 ```
 
 
-```{r echo = F}
+```{r echo = F, message = F, warning = F}
 ggplot(data = tornados_full, aes(x = long, y = lat, group = group)) +
   geom_polygon(colour = "black", aes(fill = n_tornados), linewidth = 0.8) +
   coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
@@ -96,7 +96,7 @@ ggplot(data = tornados_full, aes(x = long, y = lat, group = group)) +
 
 The map demonstrates the number of tornadoes recorded in each state in 2004. From this we can see that the Midwest experienced the bulk of the tornadoes seen that year, with Texas at the top. In 2004, Texas saw 178 tornadoes throughout the year. This is not a surprise, as Texas is known for experiencing the highest number of tornadoes per year among the states in Tornado Alley. To delve even deeper into the specifics of 2004, we can analyze the number of tornadoes occurring each month in Texas.
 
-```{r echo = F}
+```{r echo = F, message = F, warning = F}
 tornados_texas <- tornados |> filter(yr == 2004, st == "TX") |> group_by(date) |> summarise(n = n())
 
 ggplot(data = tornados_texas, aes(x = date, y = n)) + 
