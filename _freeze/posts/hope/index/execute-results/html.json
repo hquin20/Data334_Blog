@@ -1,0 +1,16 @@
+{
+  "hash": "416c6130c40ea357004d8207a2a2709f",
+  "result": {
+    "markdown": "---\ntitle: \"UFO Sightings!\"\nauthor: \"Hailey Quintavalle\"\ndate: \"2024-03-05\"\ncategories: [UFO, Blog]\nimage: ufo.webp\n---\n\n::: {.cell}\n\n:::\n\n\n## A Look at the Data\n\nwhat we want to look at:\n\n- time (years with the most sightings / timeline) --> lineplot of years --> if year with a lot focus on that\n\n- world map of sightings (world map --> number of sightings)\n\n- looking into the shape? (? IF there's nothing interesting in time plot)\n\n\n## Visual Analysis\n\n\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n```\nJoining with `by = join_by(country)`\n```\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-5-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-6-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n```\nWarning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2\n3.5.0.\nℹ Please use the `legend.position.inside` argument of `theme()` instead.\n```\n:::\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-7-1.png){width=672}\n:::\n:::\n\n\n\n\n\n## Conclusion\n\n\n\nmake comment about alaksa and hawaii if we had more time....there wasnt many sightings there anyway \n\n\n\n## Connection to Class Ideas\n\n\n## Partner \n\nHope!\n\n\n\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

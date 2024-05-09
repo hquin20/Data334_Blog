@@ -7,7 +7,6 @@ image: "tornado.jpg"
 editor: 
   markdown: 
     wrap: sentence
-
 ---
 
 ![A scence from the movie *Twister* (1996)](twister.jpg)

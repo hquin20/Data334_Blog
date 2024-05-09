@@ -1,5 +1,53 @@
 ---
 title: "Music and Mental Health!"
 author: "Hailey Quintavalle"
+date: "2024-05-04"
+categories: [Music, Blog]
+image: "album.webp"
+editor: 
+  markdown: 
+    wrap: sentence
 ---
+
+![](music-and-mental-health.jpg)
+
+
+intro here
+
+
+## A Look at the Data
+
+
+
+
+
+## Visual Analysis
+
+
+
+## Conclusion
+
+
+
+
+## Connection to Class Ideas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
