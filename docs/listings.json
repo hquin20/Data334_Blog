@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/music_blog/index.html",
       "/posts/ufo_sightings_blog/index.html",
       "/posts/tornado_blog/index.html",
       "/posts/mario_kart_blog/index.html"
