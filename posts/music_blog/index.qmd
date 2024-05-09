@@ -9,7 +9,7 @@ editor:
     wrap: sentence
 ---
 
-![](music-and-mental-health.jpg)
+![I kind of hate this so maybe change it](music-and-mental-health.jpg)
 
 
 intro here
