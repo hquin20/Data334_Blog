@@ -12,13 +12,59 @@ editor:
 ![I kind of hate this so maybe change it](music-and-mental-health.jpg)
 
 
-intro here
+
+Music is a luxury that all people enjoy one way or another. People listen for a variety of different reasons, often to make oneself feel good, reduce stress, or as a distraction from something happening in their life. Music therapy was created because of the effects music has been shown to have on quality of life through relaxation and comfort. It is a low cost intervention that has been shown to improve mood and decrease anxiety, as well as decrease the pain associated with medical procedures and chronic conditions (Kemper & Danhauer, 2005). The type of music also seems to reflect a person's state of emotional vulnerability at a given time (Baker & Bor, 2008).
 
 
 ## A Look at the Data
 
+Included in the data for the present analysis, individuals have reported the extent to which they have listened to a variety of genres and have reported how often they experience symptoms of four different mental disorders: anxiety, depression, OCD, and insomnia. 
 
+The data that is used in this exploratory analysis comes from [Kaggle](https://www.kaggle.com/datasets/catherinerasgaitis/mxmh-survey-results?resource=download), and contains self-reported survey responses from 736 participants. The data was collected through an online google form created by Catherine Rasgaitis, an undergraduate student from the University of Washington. The form was posted in various Reddit forums, Discord servers, and social media platforms, as well as posters in public locations such as libraries and parks. Participants of all ages and locations were permitted to take the survey, gathering a final random sample ranging in ages from 10 to 89 years old (*M* = 25).
 
+Within the survey, people were asked to rate how much they listen to 16 different music genres by selecting Never, Rarely, Sometimes, or Very Frequently. They were also presented with symptoms of Anxiety, Depression, OCD, and Insomnia and asked to rank each disorder on a scale of 0 to 10; 0 representing not having experienced this disorder at all and 10 representing having experienced this disorder regularly or to an extreme.
+
+Variables included in the original data set:
+
+-   `Timestamp`: Date and time when form was submitted
+
+-   `Age`: Age of participant
+
+-   `Primary streaming service`: Choose from options of Apple Music, Pandora, Spotify, YouTube Music, Other streaming service, or do not use a streaming service
+
+-   `Hours per day`: Number of hours listened to music per day
+
+-   `While working`: Does the respondent listen to music while studying/working?
+
+-   `Instrumentalist`: Does the respondent play an instrument regularly?
+
+-   `Composer`: Does the respondent compose music?
+
+-   `Fav genre`: Favorite or top genre
+
+-   `Exploratory`: Does the respondent actively explore new artists/genres?
+
+-   `Foreign languages`: Does the respondent listen to music with lyrics in a language they are not fluent in?
+
+-   `BPM`: Beats per minute of favorite genre
+
+-   `Frequency [Classical]`: How frequently the respondent listens to classical music
+
+-   `Frequency [Country]`: How frequently the respondent listens to country music
+
+...
+
+-   `Frequency [Video Game]`: How frequently the respondent listens to video game music
+
+-   `Anxiety`: Self-reported anxiety on a scale of 0-10
+
+-   `Depression`: Self-reported depression, on a scale of 0-10
+
+-   `Insomnia`: Self-reported insomnia, scale of 0-10
+
+-   `OCD`: Self-reported obsessive compulsive disorder, 0-10
+
+-   `Music effects`: Does music improve/worsen mental health conditions?
 
 
 ## Visual Analysis
