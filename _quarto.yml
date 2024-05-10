@@ -13,7 +13,7 @@ website:
         href: https://www.linkedin.com/in/hailey-quintavalle-b8071221b/
 format:
   html:
-    theme: slate
+    theme: superhero
     css: styles.css
 
 
